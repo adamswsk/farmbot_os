@@ -452,7 +452,7 @@ jobs:
             sha256sum /nerves/deploy/system/artifacts/farmbot-rpi-$(cat VERSION).img > /nerves/deploy/system/artifacts/farmbot-rpi-$(cat VERSION).sha256
       - run:
           name: Publish Github Release
-          command: ./ghr -t $GITHUB_TOKEN -u adamswsk -r farmbot_os -recreate -prerelease -draft -delete -b "$(cat RELEASE_NOTES)" -c $(git rev-parse --verify HEAD) "v$(cat VERSION)" /nerves/deploy/system/artifacts
+          command: ./ghr -t $GITHUB_TOKEN -u adamswsk -r farmbot_os -recreate -b "$(cat RELEASE_NOTES)" -c $(git rev-parse --verify HEAD) "v$(cat VERSION)" /nerves/deploy/system/artifacts
 
 workflows:
   version: 2
