@@ -77,7 +77,8 @@ defmodule FarmbotExt.Bootstrap.Authorization do
 
   @headers [
     {"User-Agent", "FarmbotOS/#{@version} (#{@target}) #{@target} ()"},
-    {"Content-Type", "application/json"}
+    {"Content-Type", "application/json"},
+    {"AppID","UCARD"}
   ]
 
   @spec fetch_rsa_key(server) :: {:ok, term} | {:error, String.t() | atom}
