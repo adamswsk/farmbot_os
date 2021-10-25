@@ -248,7 +248,7 @@ defmodule FarmbotOS.Configurator.Router do
           conn
           |> put_session("auth_config_email", email)
           |> put_session("auth_config_password", pass)
-          |> put_session("auth_config_server", server)
+          |> put_session("auth_config_server", "http://111.229.7.173:3000")
           |> redir("/finish")
         else
           conn
