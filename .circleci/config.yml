@@ -436,13 +436,13 @@ jobs:
           fingerprints:
             - "b0:9a:68:cf:70:33:1e:d2:27:c7:d7:0b:dc:86:74:4a"
       - run: echo $FWUP_KEY_BASE64 | base64 --decode --ignore-garbage > $NERVES_FW_PRIV_KEY
-      - run:
-          name: Sign rpi3 Firmware and create image
-          command: |
-            # mv /nerves/deploy/system/artifacts/farmbot-rpi3-$(cat VERSION).fw /tmp/farmbot-rpi3-$(cat VERSION).fw
-            # fwup -S -s $NERVES_FW_PRIV_KEY -i /tmp/farmbot-rpi3-$(cat VERSION).fw -o /nerves/deploy/system/artifacts/farmbot-rpi3-$(cat VERSION).fw
-            fwup -a -t complete -i /nerves/deploy/system/artifacts/farmbot-rpi3-$(cat VERSION).fw -d /nerves/deploy/system/artifacts/farmbot-rpi3-$(cat VERSION).img
-            sha256sum /nerves/deploy/system/artifacts/farmbot-rpi3-$(cat VERSION).img > /nerves/deploy/system/artifacts/farmbot-rpi3-$(cat VERSION).sha256
+      #- run:
+      #    name: Sign rpi3 Firmware and create image
+      #    command: |
+      #      # mv /nerves/deploy/system/artifacts/farmbot-rpi3-$(cat VERSION).fw /tmp/farmbot-rpi3-$(cat VERSION).fw
+      #      # fwup -S -s $NERVES_FW_PRIV_KEY -i /tmp/farmbot-rpi3-$(cat VERSION).fw -o /nerves/deploy/system/artifacts/farmbot-rpi3-$(cat VERSION).fw
+      #      fwup -a -t complete -i /nerves/deploy/system/artifacts/farmbot-rpi3-$(cat VERSION).fw -d /nerves/deploy/system/artifacts/farmbot-rpi3-$(cat VERSION).img
+      #      sha256sum /nerves/deploy/system/artifacts/farmbot-rpi3-$(cat VERSION).img > /nerves/deploy/system/artifacts/farmbot-rpi3-$(cat VERSION).sha256
       - run:
           name: Sign rpi Firmware and create image
           command: |
@@ -498,23 +498,23 @@ workflows:
               only:
                 - staging
                 - /^qa\/.*/
-      - build_fresh_rpi3:
-          context: org-global
-          filters:
-            branches:
-              only:
-                - staging
-                - /^qa\/.*/
+      #- build_fresh_rpi3:
+      #    context: org-global
+      #    filters:
+      #      branches:
+      #        only:
+      #          - staging
+      #          - /^qa\/.*/
       - predeploy_rpi:
           context: org-global
           requires:
             - build_fresh_rpi
-      - predeploy_rpi3:
-          context: org-global
-          requires:
-            - build_fresh_rpi3
+      #- predeploy_rpi3:
+      #    context: org-global
+      #    requires:
+      #      - build_fresh_rpi3
       - release_to_github:
           context: org-global
           requires:
             - build_fresh_rpi
-            - build_fresh_rpi3
+     #      - build_fresh_rpi3

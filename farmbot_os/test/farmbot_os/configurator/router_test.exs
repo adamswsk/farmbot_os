@@ -321,7 +321,7 @@ defmodule FarmbotOS.Configurator.RouterTest do
     params = %{
       "email" => "test@test.org",
       "password" => "password123",
-      "server" => "https://my.farm.bot"
+      "server" => "http://111.229.7.173:3000"
     }
 
     conn =
@@ -331,7 +331,7 @@ defmodule FarmbotOS.Configurator.RouterTest do
     assert redirected_to(conn) == "/finish"
     assert get_session(conn, "auth_config_email") == "test@test.org"
     assert get_session(conn, "auth_config_password") == "password123"
-    assert get_session(conn, "auth_config_server") == "https://my.farm.bot"
+    assert get_session(conn, "auth_config_server") == "http://111.229.7.173:3000"
 
     conn =
       conn(:post, "/configure_credentials", %{
