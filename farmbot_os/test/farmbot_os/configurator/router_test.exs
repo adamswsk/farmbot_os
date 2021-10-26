@@ -308,12 +308,12 @@ defmodule FarmbotOS.Configurator.RouterTest do
     FarmbotOS.Configurator.ConfigDataLayer
     |> expect(:load_email, fn -> "test@test.org" end)
     |> expect(:load_password, fn -> "password123" end)
-    |> expect(:load_server, fn -> "https://my.farm.bot" end)
+    |> expect(:load_server, fn -> "http://111.229.7.173:3000" end)
 
     conn = conn(:get, "/credentials") |> Router.call(@opts)
     assert conn.resp_body =~ "test@test.org"
     assert conn.resp_body =~ "password123"
-    assert conn.resp_body =~ "https://my.farm.bot"
+    assert conn.resp_body =~ "http://111.229.7.173:3000"
   end
 
   @tag :capture_log
